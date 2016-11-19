@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Post Message</title>
+    </head>
+    <body>
+        {% if messages %}
+            <p>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </p>
+        {% endif %}
+        <form method='post'>
+            {% csrf_token %}
+            Message:<br><input type="text" name="message">
+            <br><br>
+
+            URL:<br><input type="text" name="url">
+            <br><br>
+
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </body>
+</html>
