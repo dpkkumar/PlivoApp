@@ -6,13 +6,14 @@ PROJECT_DIR = os.path.dirname(__file__)
 SECRET_KEY = '6_g@d!*!u2ar=d*5vuum@s%fdtw-yz@y#1=b&b36xivry@^ijg'
 
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 # Openshift identifier
 ON_OPENSHIFT = False
 if 'OPENSHIFT_REPO_DIR' in os.environ:
     ON_OPENSHIFT = True
+    DEBUG = False
+    ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
