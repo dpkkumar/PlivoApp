@@ -31,7 +31,7 @@ def enqueue_and_retry(msg, url):
     if status_code == 404:
         # Exponential backoff: 2**0+4, 2**1+4, 2**2+4, 2**3+4, 2**4+4,...
         seconds_to_wait = 2 ** enqueue_and_retry.request.retries + 4
-        raise enqueue_and_retry.retry(exc=Exception("Remote Service is Down"), countdown=seconds_to_wait)
+        raise enqueue_and_retry.retry(exc=Exception("Message service is down"), countdown=seconds_to_wait)
 
     # If service returns acknowledgement(200 status code), message is delivered, so update task status to delivered.
     if task_status.status == TaskStatus.SENT:
@@ -60,4 +60,4 @@ def send_callback_notification(url, message_task_id, status):
         # Exponential backoff: 2**0+4, 2**1+4, 2**2+4, 2**3+4, 2**4+4,...
         seconds_to_wait = 2 ** send_callback_notification.request.retries + 4
         raise enqueue_and_retry.retry(exc=e, countdown=seconds_to_wait)
-    return "Notification Sent to URL: {} for MessageTaskID: {} with Status: {}".format(url, message_task_id, status)
+    return "Callback Notification {} to URL: {} for MessageTaskID: {}".format(status, url, message_task_id)
