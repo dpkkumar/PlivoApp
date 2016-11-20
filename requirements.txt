@@ -2,3 +2,4 @@ Django==1.8
 django-celery
 redis
 requests
+django-extensions

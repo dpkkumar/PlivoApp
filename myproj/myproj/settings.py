@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'djcelery',
     'msgapi',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
